@@ -1,6 +1,3 @@
-
-
-// Funções
 const findUserByIdController = async (req, res) => {
     try
     {
@@ -168,7 +165,6 @@ const removeUserFavoriteProductController = async (req, res) => {
 
 
 // Exportação
-
 module.exports = {
     findUserByIdController,
     findAllUsersController,

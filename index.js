@@ -10,11 +10,13 @@ const port = 3000;
 
 app.use(express.json());
 
-
+// Conexão com o banco de dados
 connectToDatabase();
 
+// Rotas do usuário
 app.use('/user', user);
 
+// Rota inicial
 app.get('/marketplace/', (req, res) => {
     res.send({
         message: 'Bem vindo ao nosso Marketplace'
