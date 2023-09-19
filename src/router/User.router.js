@@ -2,73 +2,19 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controller/User.controller');
 
-router.get('/findById:id', (req, res) => {
-    res.send({
-        message: 'Rota findById'
-    });
-});
+router.get('/findById:id', userController.findUserByIdController);
+router.get('/findAll', userController.findAllUsersController);
 
-router.get('/findAll', (req, res) => {
-    res.send({
-        message: 'Rota findAll'
-    });
-});
+router.post('/create', userController.createUserController);
+router.post('/addAddress/:id', userController.addUserAddressController);
+router.post('/addPhone/:id', userController.addUserPhoneController);
+router.post('/addFavProduct/:id', userController.addUserFavoriteProductController);
 
+router.put('/update/:id', userController.updateUserController);
 
-router.post('/create', (req, res) => {
-    res.send({
-        message: 'Rota create'
-    });
-});
-
-router.post('/addAddress/:id', (req, res) => {
-    res.send({
-        message: 'Rota addAddress'
-    });
-});
-
-router.post('/addPhone/:id', (req, res) => {
-    res.send({
-        message: 'Rota addPhone'
-    });
-});
-
-router.post('/addFavProduct/:id', (req, res) => {
-    res.send({
-        message: 'Rota addFavorite'
-    });
-});
-
-
-router.put('/update/:id', (req, res) => {
-    res.send({
-        message: 'Rota update'
-    });
-});
-
-
-router.delete('/remove/:id', (req, res) => {
-    res.send({
-        message: 'Rota delete'
-    });
-});
-
-router.delete('/removeFavorite/:id', (req, res) => {
-    res.send({
-        message: 'Rota removeFavorite'
-    });
-});
-
-router.delete('/removeAddress/:id', (req, res) => {
-    res.send({
-        message: 'Rota removeAddress'
-    });
-});
-
-router.delete('/removePhone/:id', (req, res) => {
-    res.send({
-        message: 'Rota removePhone'
-    });
-});
+router.delete('/remove/:id', userController.removeUserController);
+router.delete('/removeFavProduct/:id', userController.removeUserFavoriteProductController);
+router.delete('/removeAddress/:id', userController.removeUserAddressController);
+router.delete('/removePhone/:id', userController.removeUserPhoneController);
 
 module.exports = router;
