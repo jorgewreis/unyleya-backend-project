@@ -1,0 +1,9 @@
+Documentação de auxilio para o desenvolvimento do projeto
+
+Prefixos de commits:
+    - FIX: Correção de bugs
+    - FEAT: Adição de novo recurso
+    - BUILD: Criação de build do projeto
+    - SHORE: Nova dependência a uma configuração
+    - DOCS: Documentação
+    - TEST: Testes
