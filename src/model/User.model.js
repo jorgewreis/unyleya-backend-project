@@ -1,5 +1,7 @@
+// Importação de módulos
 const mongoose = require('mongoose');
 
+// Definição do Schema
 const UserSchema = new mongoose.Schema({
     nome:       {typeof: String, required: true},
     email:      {typeof: String, required: true, unique: true},
@@ -33,6 +35,8 @@ const UserSchema = new mongoose.Schema({
     admin: {typeof: Boolean, required: true, default: false}
 });
 
+// Definição do Model
 const User = mongoose.model('User', UserSchema);
 
+// Exportação
 module.exports = User;
