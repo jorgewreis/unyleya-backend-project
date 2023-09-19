@@ -3,36 +3,36 @@ const mongoose = require('mongoose');
 
 // Definição do Schema
 const UserSchema = new mongoose.Schema({
-    nome:       {typeof: String, required: true},
-    email:      {typeof: String, required: true, unique: true},
-    senha:      {typeof: String, required: true},
-    imagem:     {typeof: String},
+    nome:       {type: String, required: true},
+    email:      {type: String, required: true, unique: true},
+    senha:      {type: String, required: true},
+    imagem:     {type: String},
     endereco:  [
                 {
-                    cep:        {typeof: String, required: true},
-                    rua:        {typeof: String, required: true},
-                    numero:     {typeof: Number, required: true},
-                    complemento:{typeof: String, required: true},
-                    bairro:     {typeof: String, required: true},
-                    cidade:     {typeof: String, required: true},
-                    estado:     {typeof: String, required: true},
-                    dataCriacao:{typeof: Date, required: true}
+                    cep:        {type: String, required: true},
+                    rua:        {type: String, required: true},
+                    numero:     {type: Number, required: true},
+                    complemento:{type: String, required: true},
+                    bairro:     {type: String, required: true},
+                    cidade:     {type: String, required: true},
+                    estado:     {type: String, required: true},
+                    dataCriacao:{type: Date, required: true}
                 }
                ],
     telefones: [
                 {
-                    ddd:        {typeof: Number, required: true},
-                    numero:     {typeof: Number, required: true}
+                    ddd:        {type: Number, required: true},
+                    numero:     {type: Number, required: true}
                 }
                ],
-    dataCriacao:{typeof: Date, required: true},
+    dataCriacao:{type: Date, required: true},
     produtosFavoritos: [
         {
-            _id: {typeof: mongoose.Schema.Types.ObjectId, ref: 'Produtos', required: true, unique: true},
-            dataCriacao: {typeof: Date, required: true}
+            _id: {type: mongoose.Schema.Types.ObjectId, ref: 'Produtos', required: true, unique: true},
+            dataCriacao: {type: Date, required: true}
         }
     ],
-    admin: {typeof: Boolean, required: true, default: false}
+    admin: {type: Boolean, required: true, default: false}
 });
 
 // Definição do Model
