@@ -16,7 +16,7 @@ const UserSchema = new mongoose.Schema({
                     bairro:     {type: String, required: true},
                     cidade:     {type: String, required: true},
                     estado:     {type: String, required: true},
-                    dataCriacao:{type: Date, required: true}
+                    dataCriacao:{type: Date, required: true, default: Date.now()}
                 }
                ],
     telefones: [
@@ -25,11 +25,11 @@ const UserSchema = new mongoose.Schema({
                     numero:     {type: Number, required: true}
                 }
                ],
-    dataCriacao:{type: Date, required: true},
+    dataCriacao:{type: Date, required: true, default: Date.now()},
     produtosFavoritos: [
         {
             _id: {type: mongoose.Schema.Types.ObjectId, ref: 'Produtos', required: true, unique: true},
-            dataCriacao: {type: Date, required: true}
+            dataCriacao: {type: Date, required: true, default: Date.now()}
         }
     ],
     admin: {type: Boolean, required: true, default: false}

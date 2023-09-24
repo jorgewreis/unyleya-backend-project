@@ -18,7 +18,6 @@ const findUserByIdController = async (req, res) => {
     {
         if (err.kind === 'ObjectId')
         {
-            console.log(err.kind == 'ObjectId');
             return res.status(404).send({
                 message: 'ID informado não é válido, tente novamente.'
             });
@@ -35,7 +34,7 @@ const findAllUsersController = async (req, res) => {
     try
     {
         const users = await userService.findAllUsersService();
-        if (users != [])
+        if (users == [])
         {
             return res.status(200).send({
                 message: 'Não há usuários cadastrados.'
