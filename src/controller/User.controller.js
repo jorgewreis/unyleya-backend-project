@@ -78,6 +78,7 @@ const updateUserController = async (req, res) => {
     try
     {
         const user = await userService.updateUserService(req.params.id, req.body);
+        console.log(user);
         if (!user)
         {
             return res.status(404).send({

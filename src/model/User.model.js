@@ -33,21 +33,30 @@ const UserSchema = new mongoose.Schema({
                     dataCriacao:{type: Date, required: true, default: getDataAtualUTC3()}
                 }
                ],
-    dataCriacao:{type: Date, required: true, default: getDataAtualUTC3()},
-    produtosFavoritos: [
-        {
-            _id: {type: mongoose.Schema.Types.ObjectId, ref: 'Produtos', required: true, unique: true},
-            dataCriacao: {type: Date, required: true, default: getDataAtualUTC3()}
-        }
-    ],
-    admin: {type: Boolean, required: true, default: false}
+    dataCriacao:{type: Date, required: true, default: getDataAtualUTC3()}
+    // produtosFavoritos: [
+    //     {
+    //         _id: {type: mongoose.Schema.Types.ObjectId, ref: 'Produtos', required: true, unique: true},
+    //         dataCriacao: {type: Date, required: true, default: getDataAtualUTC3()}
+    //     }
+    // ],
+    // admin: {type: Boolean, required: true, default: false}
 });
 
 UserSchema.pre('save', async function(next) {
-    const hash = await bcrypt.hash(this.senha, 10);
-    this.senha = hash;
+    if(this.senha){
+        const hash = await bcrypt.hash(this.senha, 10);
+        this.senha = hash;
+        next();
+    }    
+});
 
-    next();
+UserSchema.pre('findOneAndUpdate', async function(next) {
+    if(this._update.senha){
+        const hash = await bcrypt.hash(this._update.senha, 10);
+        this._update.senha = hash;
+        next();
+    }
 });
 
 // Definição do Model
