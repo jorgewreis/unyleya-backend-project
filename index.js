@@ -2,6 +2,7 @@
 const express = require('express');
 const user = require('./src/router/User.router');
 const { connectToDatabase } = require('./src/database/database');
+const auth = require('./src/router/Auth.router');
 
 const app = express();
 
@@ -13,8 +14,8 @@ app.use(express.json());
 // Conexão com o banco de dados
 connectToDatabase();
 
-// Rotas do usuário
-app.use('/user', user);
+app.use('/user', user);// Rotas do usuário
+app.use('/auth', auth); // Rota de autenticação
 
 // Rota inicial
 app.get('/marketplace/', (req, res) => {
