@@ -12,3 +12,6 @@ Tudo o que foi realizado no modo desenvolvedor:
 - [x] Criação do Index.js
 
 - [x] Criação do arquivo de conexão com o banco de dados
+- [x] Criação do código MVC para o usuário
+
+- [x] Instalar o Bycrpt

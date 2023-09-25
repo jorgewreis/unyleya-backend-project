@@ -11,16 +11,16 @@ router.get('/findAll', userController.findAllUsersController);
 router.post('/create', userController.createUserController);
 router.post('/addAddress/:id', userController.addUserAddressController);
 router.post('/addPhone/:id', userController.addUserPhoneController);
-router.post('/addFavProduct/:id', userController.addUserFavoriteProductController);
+//router.post('/addFavProduct/:id', userController.addUserFavoriteProductController);
 
 // Rotas Put
 router.put('/update/:id', userController.updateUserController);
 
 // Rotas Delete
 router.delete('/remove/:id', userController.removeUserController);
-router.delete('/removeFavProduct/:id', userController.removeUserFavoriteProductController);
-router.delete('/removeAddress/:id', userController.removeUserAddressController);
-router.delete('/removePhone/:id', userController.removeUserPhoneController);
+//router.delete('/removeFavProduct/', userController.removeUserFavoriteProductController);
+router.delete('/removeAddress/', userController.removeUserAddressController);
+router.delete('/removePhone/', userController.removeUserPhoneController);
 
 // Exportação
 module.exports = router;

@@ -1,7 +1,15 @@
 // Importações
+const { deleteOne } = require('../model/User.model');
 const userService = require('../service/User.service');
 
 // Funções
+
+function getDataAtualUTC3() {
+    var agora = new Date();
+    agora.setHours(agora.getHours() - 3);
+    return agora;
+}
+
 const findUserByIdController = async (req, res) => {
     try 
     {
@@ -90,13 +98,35 @@ const updateUserController = async (req, res) => {
 const removeUserController = async (req, res) => {
     try
     {
-        const user = await userService.removeUserService(req.params.id);
-        if(user.deletedCount > 0)
+        const deletedUser = await userService.removeUserService(req.params.id);
+        if(deletedUser == null)
         {
-            return res.status(200).send({
-                message: 'Usuário removido com sucesso.'
+            res.status(404).send({message: 'Usuário não encontrado, tente novamente.'});            
+        } else {
+            res.status(201).send({message: 'Usuário removido com sucesso.'});
+        }
+    } 
+    catch (err)
+    {
+        console.log(`error: ${err.message}`);
+        return res.status(500).send({
+            message: 'Ocorreu um erro inesperado'
+        });
+    }
+};
+
+const addUserAddressController = async (req, res) => {
+    try
+    {
+        req.body.dataCriacao = getDataAtualUTC3();
+        const address = await userService.addUserAddressService(req.params.id, req.body);
+        if (address.value != null)
+        {
+            return res.status(201).send({
+                message: 'Endereço adicionado com sucesso.'
             });
-        } else
+        } 
+        else
         {
             return res.status(404).send({
                 message: 'Usuário não encontrado, tente novamente.'
@@ -112,28 +142,23 @@ const removeUserController = async (req, res) => {
     }
 };
 
-const addUserAddressController = async (req, res) => {
-    try
-    {
-        res.send({
-            message: 'Rota addAddress'
-        });
-    } 
-    catch (err)
-    {
-        console.log(`error: ${err.message}`);
-        return res.status(500).send({
-            message: 'Ocorreu um erro inesperado'
-        });
-    }
-};
-
 const addUserPhoneController = async (req, res) => {
     try
     {
-        res.send({
-            message: 'Rota addPhone'
-        });
+        req.body.dataCriacao = getDataAtualUTC3();
+        const phone = await userService.addUserPhoneService(req.params.id, req.body);
+        if (phone.value != null)
+        {
+            return res.status(201).send({
+                message: 'Telefone adicionado com sucesso.'
+            });
+        } 
+        else
+        {
+            return res.status(404).send({
+                message: 'Usuário não encontrado, tente novamente.'
+            });
+        }
     } 
     catch (err)
     {
@@ -147,9 +172,20 @@ const addUserPhoneController = async (req, res) => {
 const addUserFavoriteProductController = async (req, res) => {
     try
     {
-        res.send({
-            message: 'Rota addFavorite'
-        });
+        req.body.dataCriacao = getDataAtualUTC3();
+        const product = await userService.addUserFavoriteProductService(req.params.id, req.body);
+        if (product.value == null)
+        {
+            return res.status(201).send({
+                message: 'Produto adicionado com sucesso.'
+            });
+        } 
+        else
+        {
+            return res.status(404).send({
+                message: 'Usuário não encontrado, tente novamente.'
+            });
+        }
     } 
     catch (err)
     {
@@ -163,9 +199,28 @@ const addUserFavoriteProductController = async (req, res) => {
 const removeUserAddressController = async (req, res) => {
     try
     {
-        res.send({
-            message: 'Rota removeAddress'
+        const address = await userService.removeUserAddressService(req.body.id, req.body.addressId);
+        let found = false;
+
+        address.value.enderecos.map((valor, chave) => {
+            if (valor._id == req.body.addressId)
+            {
+                found = true;
+            }
         });
+
+        if (found)
+        {
+            return res.status(200).send({
+                message: 'Endereço removido com sucesso.'
+            });
+        } 
+        else
+        {
+            return res.status(404).send({
+                message: 'Ocorreu algum erro, endereço não removido, tente novamente.'
+            });
+        }
     } 
     catch (err)
     {
@@ -179,9 +234,28 @@ const removeUserAddressController = async (req, res) => {
 const removeUserPhoneController = async (req, res) => {
     try
     {
-        res.send({
-            message: 'Rota removePhone'
+        const phone = await userService.removeUserPhoneService(req.body.id, req.body.phoneId);
+        let found = false;
+
+        phone.value.telefones.map((valor, chave) => {
+            if (valor._id == req.body.phoneId)
+            {
+                found = true;
+            }
         });
+
+        if (found)
+        {
+            return res.status(200).send({
+                message: 'Telefone removido com sucesso.'
+            });
+        } 
+        else
+        {
+            return res.status(404).send({
+                message: 'Ocorreu algum erro, telefone não removido, tente novamente.'
+            });
+        }
     } 
     catch (err)
     {
@@ -195,9 +269,28 @@ const removeUserPhoneController = async (req, res) => {
 const removeUserFavoriteProductController = async (req, res) => {
     try
     {
-        res.send({
-            message: 'Rota removeFavorite'
+        const product = await userService.removeUserFavoriteProductService(req.body.id, req.body.productId);
+        let found = false;
+
+        product.value.produtosFavoritos.map((valor, chave) => {
+            if (valor._id == req.body.productId)
+            {
+                found = true;
+            }
         });
+
+        if (found)
+        {
+            return res.status(200).send({
+                message: 'Produto removido com sucesso.'
+            });
+        } 
+        else
+        {
+            return res.status(404).send({
+                message: 'Usuário não encontrado, tente novamente.'
+            });
+        }
     } 
     catch (err)
     {
@@ -220,9 +313,9 @@ module.exports = {
 
     addUserAddressController,
     addUserPhoneController,
-    addUserFavoriteProductController,
+    //addUserFavoriteProductController,
 
     removeUserAddressController,
     removeUserPhoneController,
-    removeUserFavoriteProductController
+    //removeUserFavoriteProductController
 };
