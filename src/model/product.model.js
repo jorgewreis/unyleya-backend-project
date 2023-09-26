@@ -12,12 +12,12 @@ const ProductSchema = mongoose.Schema({
     descricao: {type: String, required: true},
     imagem: {type: String, required: true},
     codigodebarras: {type: String, required: true, unique: true},
-    // categoria: [
-    //     {
-    //         _id: {type: mongoose.Schema.Types.ObjectId, ref: 'Categorias', required: true, unique: true},
-    //         dataCriacao: {type: Date, required: true, default: getDataAtualUTC3()}
-    //     }
-    // ],
+    categoria: [
+        {
+            _id: {type: mongoose.Schema.Types.ObjectId, ref: 'Categorias', required: true},
+            dataCriacao: {type: Date, required: true, default: getDataAtualUTC3()}
+        }
+    ],
     criadoEm: {type: Date, default: getDataAtualUTC3()}
 });
 
