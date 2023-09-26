@@ -1,4 +1,4 @@
-const authService = require('../service/Auth.service');
+const authService = require('../service/auth.service');
 const bcrypt = require('bcrypt');
 
 const loginController = async (req, res) => {

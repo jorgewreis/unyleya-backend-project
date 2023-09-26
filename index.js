@@ -4,8 +4,10 @@ require('dotenv').config();
 const user = require('./src/router/User.router');
 const auth = require('./src/router/Auth.router');
 const product = require('./src/router/product.router');
+const categoria = require('./src/router/categoria.router');
 
 const { connectToDatabase } = require('./src/database/database');
+const Categoria = require('./src/model/categoria.model');
 const app = express();
 
 // Definições de rotas
@@ -19,6 +21,7 @@ connectToDatabase();
 app.use('/user', user);// Rotas do usuário
 app.use('/auth', auth); // Rota de autenticação
 app.use('/product', product); // Rotas de produtos
+app.use('/categoria', categoria); // Rotas de categorias
 
 // Rota inicial
 app.get('/marketplace/', (req, res) => {
