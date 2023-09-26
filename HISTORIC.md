@@ -15,3 +15,5 @@ Tudo o que foi realizado no modo desenvolvedor:
 - [x] Criação do código MVC para o usuário
 
 - [x] Instalar o Bycrpt
+- [x] Configuração do Auth e Middleware
+- [x] Instalar o DotEnv

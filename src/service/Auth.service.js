@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const loginService = async (email) => User.findOne({ email: email }).select('senha');
 
-const generateToken = async (userId) => jwt.sign({ id: userId }, "dsalkfh234789fsdhlkj23fb96836d", { expiresIn: '43200' });
+const generateToken = async (userId) => jwt.sign({ id: userId }, process.env.SECRET , { expiresIn: '43200' });
 
 module.exports = {
     loginService,
