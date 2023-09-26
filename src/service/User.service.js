@@ -1,5 +1,5 @@
 // Import User model
-const User = require('../model/User.model');
+const User = require('../model/user.model');
 
 const findUserByIdService = async (id) => {
     return User.findById(id);

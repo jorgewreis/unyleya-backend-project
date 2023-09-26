@@ -1,6 +1,6 @@
 // Importações
-const { deleteOne } = require('../model/User.model');
-const userService = require('../service/User.service');
+const { deleteOne } = require('../model/user.model');
+const userService = require('../service/user.service');
 
 // Funções
 
