@@ -20,10 +20,50 @@ const deleteProductService = (id) => {
     return Product.findByIdAndRemove(id);
 }
 
+const addCategoriaProdutoService = (id, categoria) => {
+    return ProductModel.findByIdAndUpdate(
+        { 
+            _id: id 
+        }, 
+        { 
+            $push: 
+            { 
+                categoria: {
+                    _id: categoria._id,
+                    dataCriacao: categoria.dataCriacao
+                },
+            },
+        },
+        {
+            rawResult: true,
+        }
+    );
+}
+
+const removeCategoriaProdutoService = (id, categoria) => {
+    return ProductModel.findOneAndUpdate(
+        {
+            _id: id,
+        },
+        {
+            $pull: {
+                categoria: {
+                    _id: categoria._id,
+                },
+            },
+        },
+        {
+            rawResult: true,
+        }
+    );
+}
+
 module.exports = {
     findProductByIdService,
     findAllProductService,
     createProductService,
     updateProductService,
-    deleteProductService
+    deleteProductService,
+    addCategoriaProdutoService,
+    removeCategoriaProdutoService
 }

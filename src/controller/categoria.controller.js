@@ -9,8 +9,8 @@ function getDataAtualUTC3() {
 const findCategoriaByIdController = async (req, res) => {
     try {
         res.status(200).send(await categoriaService.findCategoriaByIdService(req.params.id));
-    } catch {
-        console.log(`erro: ${error}`);
+    } catch(err) {
+        console.log(`erro: ${err.message}`);
         res.status(500).send({ message: 'Erro inesperado, tente novamente!' });
     }
 };
@@ -18,8 +18,8 @@ const findCategoriaByIdController = async (req, res) => {
 const findAllCategoriaController = async (req, res) => {
     try {
         res.status(200).send(await categoriaService.findAllCategoriaService());
-    } catch {
-        console.log(`erro: ${error}`);
+    } catch(err) {
+        console.log(`erro: ${err.message}`);
         res.status(500).send({ message: 'Erro inesperado, tente novamente!' });
     }
 };
@@ -31,8 +31,8 @@ const createCategoriaController = async (req, res) => {
             dataCriacao: getDataAtualUTC3()
         }
         res.status(201).send(await categoriaService.createCategoriaService(corpo));
-    } catch {
-        console.log(`erro: ${error}`);
+    } catch(err) {
+        console.log(`erro: ${err.message}`);
         res.status(500).send({ message: 'Erro inesperado, tente novamente!' });
     }
 };
@@ -40,8 +40,8 @@ const createCategoriaController = async (req, res) => {
 const updateCategoriaController = async (req, res) => {
     try {
         res.status(200).send(await categoriaService.updateCategoriaService(req.params.id, req.body));
-    } catch {
-        console.log(`erro: ${error}`);
+    } catch(err) {
+        console.log(`erro: ${err.message}`);
         res.status(500).send({ message: 'Erro inesperado, tente novamente!' });
     }
 };
@@ -49,8 +49,8 @@ const updateCategoriaController = async (req, res) => {
 const deleteCategoriaController = async (req, res) => {
     try {
         res.status(200).send(await categoriaService.deleteCategoriaService(req.params.id));
-    } catch {
-        console.log(`erro: ${error}`);
+    } catch(err) {
+        console.log(`erro: ${err.message}`);
         res.status(500).send({ message: 'Erro inesperado, tente novamente!' });
     }
 };
