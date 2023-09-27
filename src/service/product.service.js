@@ -35,7 +35,7 @@ const addCategoriaProdutoService = (id, categoria) => {
             },
         },
         {
-            rawResult: true,
+            includeResultMetadata: true,
         }
     );
 }
@@ -53,7 +53,7 @@ const removeCategoriaProdutoService = (id, categoria) => {
             },
         },
         {
-            rawResult: true,
+            includeResultMetadata: true,
         }
     );
 }

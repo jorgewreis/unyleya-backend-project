@@ -112,7 +112,6 @@ const removeUserController = async (req, res) => {
 const addUserAddressController = async (req, res) => {
     try
     {
-        req.body.dataCriacao = getDataAtualUTC3();
         const address = await userService.addUserAddressService(req.params.id, req.body);
         if (address.value != null)
         {
@@ -139,7 +138,6 @@ const addUserAddressController = async (req, res) => {
 const addUserPhoneController = async (req, res) => {
     try
     {
-        req.body.dataCriacao = getDataAtualUTC3();
         const phone = await userService.addUserPhoneService(req.params.id, req.body);
         if (phone.value != null)
         {
@@ -306,9 +304,9 @@ module.exports = {
 
     addUserAddressController,
     addUserPhoneController,
-    //addUserFavoriteProductController,
+    addUserFavoriteProductController,
 
     removeUserAddressController,
     removeUserPhoneController,
-    //removeUserFavoriteProductController
+    removeUserFavoriteProductController
 };

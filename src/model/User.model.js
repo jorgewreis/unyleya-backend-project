@@ -33,14 +33,14 @@ const UserSchema = new mongoose.Schema({
                     dataCriacao:{type: Date, required: true, default: getDataAtualUTC3()}
                 }
                ],
-    dataCriacao:{type: Date, required: true, default: getDataAtualUTC3()}
-    // produtosFavoritos: [
-    //     {
-    //         _id: {type: mongoose.Schema.Types.ObjectId, ref: 'Produtos', required: true, unique: true},
-    //         dataCriacao: {type: Date, required: true, default: getDataAtualUTC3()}
-    //     }
-    // ],
-    // admin: {type: Boolean, required: true, default: false}
+    produtosFavoritos: [
+        {
+            _id: {type: mongoose.Schema.Types.ObjectId, ref: 'Produtos', unique: true},
+            dataCriacao: {type: Date, default: getDataAtualUTC3()}
+        }
+    ],
+    dataCriacao:{type: Date, required: true, default: getDataAtualUTC3()},
+    admin: {type: Boolean, required: true, default: false}
 });
 
 UserSchema.pre('save', async function(next) {

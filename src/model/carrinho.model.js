@@ -9,14 +9,14 @@ function getDataAtualUTC3() {
 const CarrinhoSchema = new mongoose.Schema({
     produtos: [
         {
-            _id: { type: mongoose.Schema.Types.ObjectId, ref: 'Produtos' },
+            _id: { type: mongoose.Schema.Types.ObjectId, ref: 'Produtos', required: true },
             quantidade: { type: Number, required: true }
         },
     ],
     dataCriacao: { type: Date, required: true, default: getDataAtualUTC3() },
     precoTotal: { type: Number, required: true },
     frete: { type: Number, required: true },
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' }
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'Users', required: true }
 });
 
 const Carrinho = mongoose.model('Carrinhos', CarrinhoSchema);

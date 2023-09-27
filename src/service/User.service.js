@@ -40,15 +40,29 @@ const addUserPhoneService = async (id, phone) => {
 const addUserFavoriteProductService = async (id, product) => {
     return User.findOneAndUpdate(
         { _id: id },
-        { $push: { produtosFavoritos: product } },
+        { $push: 
+            { 
+                produtosFavoritos: 
+                {
+                    _id: product._id
+                } 
+            } 
+        },
         { includeResultMetadata: true}
     )
 };
 
-const removeUserFavoriteProductService = async (id, productId) => {
+const removeUserFavoriteProductService = async (id, product) => {
     return User.findOneAndUpdate(
         { _id: id },
-        { $pull: { produtosFavoritos: { _id: productId } } },
+        { $pull: 
+            { 
+                produtosFavoritos: 
+                { 
+                    _id: product._id 
+                } 
+            } 
+        },
         { includeResultMetadata: true}
     )
 };
@@ -77,8 +91,8 @@ module.exports = {
     removeUserService,
     addUserAddressService,
     addUserPhoneService,
-    //addUserFavoriteProductService,
-    //removeUserFavoriteProductService,
+    addUserFavoriteProductService,
+    removeUserFavoriteProductService,
     removeUserAddressService,
     removeUserPhoneService
 };
