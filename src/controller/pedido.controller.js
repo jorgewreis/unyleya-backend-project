@@ -42,7 +42,7 @@ const deletePedidoController = async (req, res) => {
 
 const updateStatusPedidoController = async (req, res) => {
     try {
-        res.status(200).send(await pedidoService.updateStatusPedidoService(req.params.id, req.body.status));
+        res.status(200).send(await pedidoService.updateStatusPedidoService(req.params.id));
     } catch (error) {
         res.status(500).send({ message: 'Erro inesperado, tente novamente!' });
         console.log(error);
