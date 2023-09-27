@@ -4,8 +4,8 @@ const findProductByIdService = (id) => {
     return Product.findById(id);
 }
 
-const findAllProductService = () => {
-    return Product.find();
+const findAllProductService = (limit, offset) => {
+    return Product.find().limit(limit).skip(offset);
 }
 
 const createProductService = (body) => {
@@ -28,7 +28,7 @@ const addCategoriaProdutoService = (id, categoria) => {
         { 
             $push: 
             { 
-                categoria: {
+                categorias: {
                     _id: categoria._id,
                     dataCriacao: categoria.dataCriacao
                 },
@@ -47,7 +47,7 @@ const removeCategoriaProdutoService = (id, categoria) => {
         },
         {
             $pull: {
-                categoria: {
+                categorias: {
                     _id: categoria._id,
                 },
             },

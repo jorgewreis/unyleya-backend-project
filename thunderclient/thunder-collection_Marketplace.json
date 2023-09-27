@@ -1,0 +1,310 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Marketplace",
+    "dateExported": "2023-09-27T23:11:28.537Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "14b55662-5459-465a-9e87-26057e92da74",
+            "name": "Auth",
+            "containerId": "",
+            "created": "2023-09-25T13:32:05.337Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "116db55f-4e41-49c4-b879-5ed4208c26ff",
+            "name": "User",
+            "containerId": "",
+            "created": "2023-09-25T13:32:14.825Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "f1908df6-a02d-417c-8dca-1c649bbd214d",
+            "name": "Product",
+            "containerId": "",
+            "created": "2023-09-26T11:02:56.413Z",
+            "sortNum": 30000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "26fb1f80-f957-4a18-9904-c95ddc78e19a",
+            "colId": "e0a473f1-30f0-49d8-a8aa-b75ee08a78fc",
+            "containerId": "116db55f-4e41-49c4-b879-5ed4208c26ff",
+            "name": "FindAll",
+            "url": "{{BaseURL}}{{Port}}/user/findAll",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-09-24T10:29:33.361Z",
+            "modified": "2023-09-25T14:07:07.320Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "4d0fc1bd-138d-4417-a21b-3814b9ba7af8",
+            "colId": "e0a473f1-30f0-49d8-a8aa-b75ee08a78fc",
+            "containerId": "116db55f-4e41-49c4-b879-5ed4208c26ff",
+            "name": "FindOne",
+            "url": "http://localhost:3000/user/findById/65101ec7fc3468e585a28121",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-09-25T12:36:04.465Z",
+            "modified": "2023-09-25T12:36:41.626Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "ea8c334f-8f83-4a05-8861-a4377e6000a6",
+            "colId": "e0a473f1-30f0-49d8-a8aa-b75ee08a78fc",
+            "containerId": "116db55f-4e41-49c4-b879-5ed4208c26ff",
+            "name": "Create",
+            "url": "atlas-sql-611fce12b3044d0be0dc87fe-2ym8n.a.query.mongodb.net/marketplace/user/create",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-09-24T10:35:13.985Z",
+            "modified": "2023-09-27T02:07:14.503Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nome\": \"Jorge Menezes\",\n  \"email\": \"jwmenezes@tjba.jus.br\",\n  \"senha\": \"12345678\",\n  \"imagem\": \"jorgewreis.com.br/img/foto.jpg\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "2fba78de-6c2c-459f-8ef5-0cb12d69b3c7",
+            "colId": "e0a473f1-30f0-49d8-a8aa-b75ee08a78fc",
+            "containerId": "116db55f-4e41-49c4-b879-5ed4208c26ff",
+            "name": "AddAddress",
+            "url": "http://localhost:3000/user/addAddress/651183112adcd1fe1465fbf5",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-09-24T11:17:11.338Z",
+            "modified": "2023-09-25T13:09:02.328Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n \"cep\": \"45.658-250\",\n \"rua\": \"Av. Raymundo Sa Barreto\",\n \"numero\": \"884\",\n \"bairro\": \"Jardim Savoia\",\n \"cidade\": \"Ilheus\",\n \"estado\": \"BA\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "b0ff1108-3d09-47b9-82bb-b48810cd3010",
+            "colId": "e0a473f1-30f0-49d8-a8aa-b75ee08a78fc",
+            "containerId": "116db55f-4e41-49c4-b879-5ed4208c26ff",
+            "name": "AddPhone",
+            "url": "http://localhost:3000/user/addPhone/651183112adcd1fe1465fbf5",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2023-09-25T11:38:29.103Z",
+            "modified": "2023-09-25T13:13:18.376Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"ddd\": 73,\n  \"numero\": \"99838-1028\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "d6256e1e-a0ba-4ef2-b5d3-becc0c56c864",
+            "colId": "e0a473f1-30f0-49d8-a8aa-b75ee08a78fc",
+            "containerId": "116db55f-4e41-49c4-b879-5ed4208c26ff",
+            "name": "UpdateUser",
+            "url": "http://localhost:3000/user/update/651183112adcd1fe1465fbf5",
+            "method": "PUT",
+            "sortNum": 55000,
+            "created": "2023-09-25T12:59:46.693Z",
+            "modified": "2023-09-25T13:08:37.673Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nome\": \"Jorge Reis\",\n  \"email\": \"jwmenezes@tjba.jus.br\",\n  \"senha\": \"12345678\",\n  \"imagem\": \"jorgewreis.com.br/img/foto.jpg\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "84f9cd3e-8728-4a42-969a-c26f38e41f2b",
+            "colId": "e0a473f1-30f0-49d8-a8aa-b75ee08a78fc",
+            "containerId": "116db55f-4e41-49c4-b879-5ed4208c26ff",
+            "name": "DeleteAddress",
+            "url": "http://localhost:3000/user/removeAddress/",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2023-09-24T11:36:09.412Z",
+            "modified": "2023-09-25T11:37:29.678Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": \"65101ec7fc3468e585a28121\",\n  \"addressId\": \"651170f0adaf82a3bbe15b40\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "460ca7e8-d483-42b7-b063-72ce4072a623",
+            "colId": "e0a473f1-30f0-49d8-a8aa-b75ee08a78fc",
+            "containerId": "116db55f-4e41-49c4-b879-5ed4208c26ff",
+            "name": "DeletePhone",
+            "url": "http://localhost:3000/user/removePhone/",
+            "method": "DELETE",
+            "sortNum": 70000,
+            "created": "2023-09-25T11:41:35.658Z",
+            "modified": "2023-09-25T12:34:01.429Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": \"65101ec7fc3468e585a28121\",\n  \"phoneId\": \"65117e1fa6fe4a01d767691d\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "fdcb6596-eb80-4e8d-8d7d-568ca47e4b52",
+            "colId": "e0a473f1-30f0-49d8-a8aa-b75ee08a78fc",
+            "containerId": "116db55f-4e41-49c4-b879-5ed4208c26ff",
+            "name": "DeleteUser",
+            "url": "http://localhost:3000/user/remove/65118147e741138233a6f70a",
+            "method": "DELETE",
+            "sortNum": 80000,
+            "created": "2023-09-24T10:48:09.127Z",
+            "modified": "2023-09-25T12:54:10.590Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "65176344-ab65-4bf1-a6e6-26edb310062a",
+            "colId": "e0a473f1-30f0-49d8-a8aa-b75ee08a78fc",
+            "containerId": "14b55662-5459-465a-9e87-26057e92da74",
+            "name": "Login",
+            "url": "http://localhost:3000/auth/login",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2023-09-25T13:32:44.341Z",
+            "modified": "2023-09-25T14:06:28.746Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"jwmenezes@tjba.jus.br\",\n  \"senha\": \"12345678\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "b8d136a5-0055-402c-ac77-3e0865336911",
+            "colId": "e0a473f1-30f0-49d8-a8aa-b75ee08a78fc",
+            "containerId": "f1908df6-a02d-417c-8dca-1c649bbd214d",
+            "name": "FindAll",
+            "url": "{{BaseURL}}{{Port}}/product/findAll/",
+            "method": "GET",
+            "sortNum": 90000,
+            "created": "2023-09-26T11:04:04.161Z",
+            "modified": "2023-09-26T12:03:04.769Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MTE4MzExMmFkY2QxZmUxNDY1ZmJmNSIsImlhdCI6MTY5NTcyOTc1NywiZXhwIjoxNjk1NzcyOTU3fQ.QYDu8susJsfsCleCjMCIIZ7FIaohGAxy6Wz9ycEdYdI"
+            },
+            "tests": []
+        },
+        {
+            "_id": "235b725a-4136-4c03-9d02-70138f60479e",
+            "colId": "e0a473f1-30f0-49d8-a8aa-b75ee08a78fc",
+            "containerId": "f1908df6-a02d-417c-8dca-1c649bbd214d",
+            "name": "FindById",
+            "url": "{{BaseURL}}{{Port}}/product/find/6512bce561f96aa15ae0688c",
+            "method": "GET",
+            "sortNum": 100000,
+            "created": "2023-09-26T11:08:36.641Z",
+            "modified": "2023-09-26T11:14:18.371Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "77df0f1a-7307-440b-9049-5b7c56abbadd",
+            "colId": "e0a473f1-30f0-49d8-a8aa-b75ee08a78fc",
+            "containerId": "f1908df6-a02d-417c-8dca-1c649bbd214d",
+            "name": "Create",
+            "url": "{{BaseURL}}{{Port}}/product/create",
+            "method": "POST",
+            "sortNum": 110000,
+            "created": "2023-09-26T11:09:52.940Z",
+            "modified": "2023-09-26T11:12:55.098Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nome\":\"Patê de Atum\",\n  \"descricao\":\"Produto enlatado de qualidade\",\n  \"precoUnitario\":\"14.78\",\n  \"imagem\": \"enderecodaimagem/cod1987562.jpg\",\n  \"codigodebarras\":\"9039826281987562\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "af6dd66c-db44-4b2d-abd0-a4faf521f98c",
+            "colId": "e0a473f1-30f0-49d8-a8aa-b75ee08a78fc",
+            "containerId": "f1908df6-a02d-417c-8dca-1c649bbd214d",
+            "name": "Update",
+            "url": "{{BaseURL}}{{Port}}/product/update/6512c88a702f28372725be14",
+            "method": "PUT",
+            "sortNum": 120000,
+            "created": "2023-09-26T11:57:27.241Z",
+            "modified": "2023-09-26T12:03:56.655Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nome\":\"Patê de Atum\",\n  \"descricao\":\"Produto enlatado de qualidade\",\n  \"precoUnitario\":\"14.99\",\n  \"imagem\": \"enderecodaimagem/cod1987562.jpg\",\n  \"codigodebarras\":\"9039826281987562\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MTE4MzExMmFkY2QxZmUxNDY1ZmJmNSIsImlhdCI6MTY5NTcyOTc1NywiZXhwIjoxNjk1NzcyOTU3fQ.QYDu8susJsfsCleCjMCIIZ7FIaohGAxy6Wz9ycEdYdI"
+            },
+            "tests": []
+        },
+        {
+            "_id": "8fbae65f-488d-4ad4-9019-bec9a721b441",
+            "colId": "e0a473f1-30f0-49d8-a8aa-b75ee08a78fc",
+            "containerId": "f1908df6-a02d-417c-8dca-1c649bbd214d",
+            "name": "Delete",
+            "url": "{{BaseURL}}{{Port}}/product/delete/6512bce561f96aa15ae0688c",
+            "method": "DELETE",
+            "sortNum": 130000,
+            "created": "2023-09-26T12:01:21.792Z",
+            "modified": "2023-09-26T12:02:47.635Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MTE4MzExMmFkY2QxZmUxNDY1ZmJmNSIsImlhdCI6MTY5NTcyOTc1NywiZXhwIjoxNjk1NzcyOTU3fQ.QYDu8susJsfsCleCjMCIIZ7FIaohGAxy6Wz9ycEdYdI"
+            },
+            "tests": []
+        }
+    ]
+}

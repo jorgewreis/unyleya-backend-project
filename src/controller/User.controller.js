@@ -34,7 +34,7 @@ const findUserByIdController = async (req, res) => {
 const findAllUsersController = async (req, res) => {
     try
     {
-        const users = await userService.findAllUsersService();
+        const users = await userService.findAllUsersService(req.query.limit, req.query.offset);
         if (users == [])
         {
             return res.status(200).send({

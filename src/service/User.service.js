@@ -5,8 +5,8 @@ const findUserByIdService = async (id) => {
     return User.findById(id);
 };
 
-const findAllUsersService = async () => {
-    return User.find();
+const findAllUsersService = async (limit, offset) => {
+    return User.find().limit(limit).skip(offset);
 };
 
 const createUserService = async (user) => {
