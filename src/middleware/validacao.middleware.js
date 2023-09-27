@@ -15,4 +15,42 @@ const validaUser = (req, res, next) => {
     return next();
 }
 
-module.exports = validaUser;
+const validaProduto = (req, res, next) => {
+    let erros = [];
+    if(!req.body.nome){
+        erros.push(` [nome] `);
+    };
+    if(!req.body.descricao){
+        erros.push(` [descricao] `);
+    };
+    if(!req.body.precoUnitario){
+        erros.push(` [preco] `);
+    };
+    if(!req.body.imagem){
+        erros.push(` [imagem] `);
+    }
+    if(!req.body.codigodebarras){
+        erros.push(` [codigodebarras] `);
+    }
+
+    if(erros.length > 1){
+        return res.status(400).send({message: `Os campos ${erros.join(', ')} são obrigatórios e devem ser preenchidos.`});
+    } else if (erros.length == 1){
+        return res.status(400).send({message: `O campo ${erros.join(', ')} é obrigatório e deve ser preenchido.`});
+    } else {
+        return next();
+    }
+}
+
+const validaCategoria = (req, res, next) => {
+    if(!req.body.nome){
+        return res.status(400).send({message: `O campo 'nome' é obrigatório e deve ser preenchido.`});
+    }
+    return next();
+}
+
+module.exports = {
+    validaUser,
+    validaProduto,
+    validaCategoria
+}

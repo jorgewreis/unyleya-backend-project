@@ -2,7 +2,7 @@ const productService = require('../service/product.service');
 
 const findProductByIdController = async (req, res) => {
     try {
-        res.send(await productService.findProductByIdService(req.params.id));
+        res.status(200).send(await productService.findProductByIdService(req.params.id));
     } catch(err) {
         console.log(`error: ${err.message}`);
         return res.status(500).send({ message: `Erro inesperado, tente novamente!`});
@@ -11,7 +11,7 @@ const findProductByIdController = async (req, res) => {
 
 const findAllProductController = async (req, res) => {
     try {
-        res.send(await productService.findAllProductService());
+        res.status(200).send(await productService.findAllProductService());
     } catch(err) {
         console.log(`error: ${err.message}`);
         return res.status(500).send({ message: `Erro inesperado, tente novamente!`});
@@ -24,7 +24,7 @@ const createProductController = async (req, res) => {
             ...req.body,
             userId: req.userId
         }
-        res.send(await productService.createProductService(corpo));
+        res.status(201).send(await productService.createProductService(corpo));
     } catch(err) {
         console.log(`error: ${err.message}`);
         return res.status(500).send({ message: `Erro inesperado, tente novamente!`});
@@ -33,7 +33,7 @@ const createProductController = async (req, res) => {
 
 const updateProductController = async (req, res) => {
     try {
-        res.send(await productService.updateProductService(req.params.id, req.body));
+        res.status(200).send(await productService.updateProductService(req.params.id, req.body));
     } catch(err) {
         console.log(`error: ${err.message}`);
         return res.status(500).send({ message: `Erro inesperado, tente novamente!`});
@@ -42,7 +42,7 @@ const updateProductController = async (req, res) => {
 
 const deleteProductController = async (req, res) => {
     try {
-        res.send(await productService.deleteProductService(req.params.id));
+        res.status(200).send(await productService.deleteProductService(req.params.id));
     } catch(err) {
         console.log(`error: ${err.message}`);
         return res.status(500).send({ message: `Erro inesperado, tente novamente!`});
