@@ -1,10 +1,11 @@
 // Definições de importação
 const express = require('express');
 require('dotenv').config();
-const user = require('./src/router/User.router');
-const auth = require('./src/router/Auth.router');
+const user = require('./src/router/user.router');
+const auth = require('./src/router/auth.router');
 const product = require('./src/router/product.router');
 const categoria = require('./src/router/categoria.router');
+const carrinho = require('./src/router/carrinho.router');
 
 const { connectToDatabase } = require('./src/database/database');
 const Categoria = require('./src/model/categoria.model');
@@ -22,6 +23,7 @@ app.use('/user', user);// Rotas do usuário
 app.use('/auth', auth); // Rota de autenticação
 app.use('/product', product); // Rotas de produtos
 app.use('/categoria', categoria); // Rotas de categorias
+app.use('/carrinho', carrinho); // Rotas de carrinho
 
 // Rota inicial
 app.get('/marketplace/', (req, res) => {
