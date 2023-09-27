@@ -1,12 +1,6 @@
 const { get } = require('mongoose');
 const CarrinhoService = require('../service/carrinho.service');
 
-function getDataAtualUTC3() {
-    var agora = new Date();
-    agora.setHours(agora.getHours() - 3);
-    return agora;
-}
-
 const findCarrinhoByUserIdController = async (req, res) => {
     try {
         res.status(200).send(await CarrinhoService.findCarrinhoByUserIdService(req.params.id));
@@ -29,8 +23,7 @@ const createCarrinhoController = async (req, res) => {
     try {
         const corpo= {
             ...req.body,
-            userId: req.userId,
-            dataCriacao: getDataAtualUTC3(),
+            userId: req.userId
         };
         res.status(201).send(await CarrinhoService.createCarrinhoService(req.params.id, corpo));
     } catch (error) {

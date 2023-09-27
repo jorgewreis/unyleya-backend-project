@@ -1,12 +1,5 @@
 const productService = require('../service/product.service');
 
-
-function getDataAtualUTC3() {
-    var agora = new Date();
-    agora.setHours(agora.getHours() - 3);
-    return agora;
-}
-
 const findProductByIdController = async (req, res) => {
     try {
         res.send(await productService.findProductByIdService(req.params.id));
@@ -29,8 +22,7 @@ const createProductController = async (req, res) => {
     try {
         const corpo = {
             ...req.body,
-            userId: req.userId,
-            dataCriacao: getDataAtualUTC3()
+            userId: req.userId
         }
         res.send(await productService.createProductService(corpo));
     } catch(err) {
@@ -59,7 +51,6 @@ const deleteProductController = async (req, res) => {
 
 const addCategoriaProdutoController = async (req, res) => {
     try {
-        req.body.dataCriacao = getDataAtualUTC3();
         const categoria = await productService.addCategoriaProdutoService(req.params.id, req.body); 
         res.status(200).send(categoria);
     } catch(err) {

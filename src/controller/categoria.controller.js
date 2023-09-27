@@ -1,11 +1,5 @@
 const categoriaService = require('../service/categoria.service');
 
-function getDataAtualUTC3() {
-    var agora = new Date();
-    agora.setHours(agora.getHours() - 3);
-    return agora;
-}
-
 const findCategoriaByIdController = async (req, res) => {
     try {
         res.status(200).send(await categoriaService.findCategoriaByIdService(req.params.id));
@@ -26,11 +20,7 @@ const findAllCategoriaController = async (req, res) => {
 
 const createCategoriaController = async (req, res) => {
     try {
-        const corpo = {
-            ...req.body,
-            dataCriacao: getDataAtualUTC3()
-        }
-        res.status(201).send(await categoriaService.createCategoriaService(corpo));
+        res.status(201).send(await categoriaService.createCategoriaService(req.body));
     } catch(err) {
         console.log(`erro: ${err.message}`);
         res.status(500).send({ message: 'Erro inesperado, tente novamente!' });

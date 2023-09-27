@@ -3,13 +3,6 @@ const { deleteOne } = require('../model/user.model');
 const userService = require('../service/user.service');
 
 // Funções
-
-function getDataAtualUTC3() {
-    var agora = new Date();
-    agora.setHours(agora.getHours() - 3);
-    return agora;
-}
-
 const findUserByIdController = async (req, res) => {
     try 
     {
@@ -173,7 +166,6 @@ const addUserPhoneController = async (req, res) => {
 const addUserFavoriteProductController = async (req, res) => {
     try
     {
-        req.body.dataCriacao = getDataAtualUTC3();
         const product = await userService.addUserFavoriteProductService(req.params.id, req.body);
         if (product.value == null)
         {

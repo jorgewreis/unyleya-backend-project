@@ -18,7 +18,7 @@ const ProductSchema = mongoose.Schema({
             dataCriacao: {type: Date, required: true, default: getDataAtualUTC3()}
         }
     ],
-    criadoEm: {type: Date, default: getDataAtualUTC3()}
+    dataCriacao: {type: Date, default: getDataAtualUTC3()}
 });
 
 const ProductModel = mongoose.model('Produtos', ProductSchema);
