@@ -7,6 +7,7 @@ const product = require('./src/router/product.router');
 const categoria = require('./src/router/categoria.router');
 const carrinho = require('./src/router/carrinho.router');
 const pedido = require('./src/router/pedido.router');
+const docs = require('./src/router/docs.router');
 
 const { connectToDatabase } = require('./src/database/database');
 const Categoria = require('./src/model/categoria.model');
@@ -26,6 +27,7 @@ app.use('/product', product); // Rotas de produtos
 app.use('/categoria', categoria); // Rotas de categorias
 app.use('/carrinho', carrinho); // Rotas de carrinho
 app.use('/pedido', pedido); // Rotas de pedidos
+app.use('/docs', docs); // Rotas de documentação
 
 // Rota inicial
 app.get('/marketplace/', (req, res) => {

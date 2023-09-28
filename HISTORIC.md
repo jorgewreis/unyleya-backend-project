@@ -17,3 +17,5 @@ Tudo o que foi realizado no modo desenvolvedor:
 - [x] Instalar o Bycrpt
 - [x] Configuração do Auth e Middleware
 - [x] Instalar o DotEnv
+- [x] Configuração de endpoints e validações
+- [x] Instalação do Swagger

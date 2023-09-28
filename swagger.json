@@ -1,0 +1,54 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API - Marketplace",
+        "description": "Unyleya project backend API",
+        "version": "1.0.0",
+        "contact":
+            {
+                "name": "Jorge Reis",
+                "email": "jorgew.reis@outlook.com",
+                "github": "github.com/jorgewreis"
+            }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000",
+            "description": "Local server test"
+        }
+    ],
+    "paths": {
+        "/user/findAll": {
+            "get": {
+                "summary": "Lista todos os usuários da API",
+                "description": "Retorna uma lista com todos os usuários cadastrados na API",
+                "tags": [
+                    "Usuário"
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK - Lista de usuários retornada com sucesso"
+                    },
+                    "401":{
+                        "description": "Unauthorized - Usuário não autorizado, ou erro de autenticação"
+                    },
+                    "404":{
+                        "description": "Not Found - Nenhum usuário encontrado"
+                    },
+                    "500":{
+                        "description": "Internal Server Error - Erro interno do servidor"
+                    }
+                }
+            }
+        },
+        "/user/findById/{id}": {
+            "get": {
+                "summary": "Busca um usuário pelo ID",
+                "description": "Retorna um usuário cadastrado na API conforme ID informado",
+                "tags": [
+                    "Usuário"
+                ]                
+            }
+        }
+    }
+}
