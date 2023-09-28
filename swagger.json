@@ -20,34 +20,558 @@
     "paths": {
         "/user/findAll": {
             "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
                 "summary": "Lista todos os usuários da API",
                 "description": "Retorna uma lista com todos os usuários cadastrados na API",
                 "tags": [
                     "Usuário"
                 ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "name": "limit"
+                    },
+                    {
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "name": "offset"
+                    }
+                ],
                 "responses": {
                     "200":{
-                        "description": "OK - Lista de usuários retornada com sucesso"
+                        "description": "OK - Lista de usuários retornada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
                     },
                     "401":{
-                        "description": "Unauthorized - Usuário não autorizado, ou erro de autenticação"
+                        "description": "Unauthorized - Usuário não autorizado, ou erro de autenticação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     },
                     "404":{
-                        "description": "Not Found - Nenhum usuário encontrado"
+                        "description": "Not Found - Nenhum usuário encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     },
                     "500":{
-                        "description": "Internal Server Error - Erro interno do servidor"
+                        "description": "Internal Server Error - Erro interno do servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
         },
         "/user/findById/{id}": {
             "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
                 "summary": "Busca um usuário pelo ID",
                 "description": "Retorna um usuário cadastrado na API conforme ID informado",
                 "tags": [
                     "Usuário"
-                ]                
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK - Usuário retornado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized - Usuário não autorizado, ou erro de autenticação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Not Found - Usuário não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error - Erro interno do servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/create": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Cria um novo usuário",
+                "description": "Cria um novo usuário na API e retorna o usuário criado",
+                "tags": [
+                    "Usuário"
+                ],
+                "responses":{
+                    "201": {
+                        "description": "OK - Usuário criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request - Erro de validação de dados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized - Usuário não autorizado, ou erro de autenticação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error - Erro interno do servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/user/update/{id}": {
+            "put": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Atualiza os dados do usuário",
+                "description": "Atualiza os dados do usuário na API e retorna o usuário atualizado, mediante ID informado",
+                "tags": [
+                    "Usuário"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK - Usuário atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request - Erro de validação de dados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized - Usuário não autorizado, ou erro de autenticação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found - Usuário não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error - Erro interno do servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/user/delete/{id}": {
+            "delete": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Deleta um usuário",
+                "description": "Deleta um usuário da API, mediante ID informado",
+                "tags": [
+                    "Usuário"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK - Usuário deletado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized - Usuário não autorizado, ou erro de autenticação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found - Usuário não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error - Erro interno do servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        },
+        "schemas": {
+            "User": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string",
+                        "description": "Nome do usuário"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "E-mail do usuário"
+                    },
+                    "senha": {
+                        "type": "string",
+                        "description": "Senha do usuário"
+                    },
+                    "imagem": {
+                        "type": "string",
+                        "description": "Imagem do usuário"
+                    },
+                    "endereço": {
+                        "type": "object",
+                        "properties": {
+                            "rua": {
+                                "type": "string",
+                                "description": "Rua do usuário"
+                            },
+                            "numero": {
+                                "type": "string",
+                                "description": "Número do usuário"
+                            },
+                            "complemento": {
+                                "type": "string",
+                                "description": "Complemento do endereço do usuário"
+                            },
+                            "bairro": {
+                                "type": "string",
+                                "description": "Bairro do usuário"
+                            },
+                            "cidade": {
+                                "type": "string",
+                                "description": "Cidade do usuário"
+                            },
+                            "estado": {
+                                "type": "string",
+                                "description": "Estado do usuário"
+                            },
+                            "cep": {
+                                "type": "string",
+                                "description": "CEP do usuário"
+                            },
+                            "dataCriação": {
+                                "type": "string",
+                                "description": "Data de inclusão do endereço"
+                            }
+                        }
+                    },
+                    "telefones": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "ddd": {
+                                    "type": "string",
+                                    "description": "DDD do telefone"
+                                },
+                                "numero": {
+                                    "type": "string",
+                                    "description": "Número do telefone"
+                                },
+                                "dataCriação": {
+                                    "type": "string",
+                                    "description": "Data de inclusão do telefone"
+                                }
+                            }
+                        }
+                    },
+                    "produtosFavoritos": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "idProduto": {
+                                    "type": "string",
+                                    "description": "ID do produto favorito"
+                                },
+                                "dataCriação": {
+                                    "type": "string",
+                                    "description": "Data de inclusão do produto favorito"
+                                }
+                            }
+                        }
+                    },
+                    "dataCriação": {
+                        "type": "string",
+                        "description": "Data de criação do usuário"
+                    },
+                    "admin": {
+                        "type": "boolean",
+                        "description": "Usuário administrador?"
+                    }
+                }
             }
         }
     }

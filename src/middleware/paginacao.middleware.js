@@ -1,8 +1,8 @@
 module.exports = (req, res, next) => {
     let { limit, offset } = req.query;
 
-    limit = number(limit);
-    offset = number(offset);
+    limit = Number(limit);
+    offset = Number(offset);
 
     !offset ? offset = 0 : null;
     !limit ? limit = 10 : null;
