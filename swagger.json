@@ -209,6 +209,17 @@
                 "tags": [
                     "Usuário"
                 ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "responses":{
                     "201": {
                         "description": "OK - Usuário criado com sucesso",
@@ -295,6 +306,17 @@
                         "name": "id"
                     }
                 ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "responses": {
                     "200": {
                         "description": "OK - Usuário atualizado com sucesso",
@@ -459,6 +481,625 @@
                     }
                 }
             }
+        },
+        "/user/addAddress/{id}": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Adiciona um endereço ao usuário",
+                "description": "Adiciona um endereço ao usuário, mediante ID informado",
+                "tags": [
+                    "Usuário"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "$ref": "#/components/schemas/UserAddress"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK - Endereço adicionado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/UserAddress"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request - Erro de validação de dados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties" : {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized - Usuário não autorizado, ou erro de autenticação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties" : {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found - Usuário não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties" : {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error - Erro interno do servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties" : {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/removeAddress/{id}": {
+            "delete": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Remove um endereço do usuário",
+                "description": "Remove um endereço do usuário, mediante ID informado",
+                "tags": [
+                    "Usuário"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK - Endereço removido com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/UserAddress"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request - Erro de validação de dados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties" : {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized - Usuário não autorizado, ou erro de autenticação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties" : {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found - Usuário não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties" : {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error - Erro interno do servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties" : {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/addPhone/{id}": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Adiciona um telefone ao usuário",
+                "description": "Adiciona um telefone ao usuário, mediante ID informado",
+                "tags": [
+                    "Usuário"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "$ref": "#/components/schemas/UserPhones"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK - Telefone adicionado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/UserPhones"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request - Erro de validação de dados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties" : {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized - Usuário não autorizado, ou erro de autenticação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties" : {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found - Usuário não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties" : {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error - Erro interno do servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties" : {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/removePhone/{id}": {
+            "delete": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Remove um telefone do usuário",
+                "description": "Remove um telefone do usuário, mediante ID informado",
+                "tags": [
+                    "Usuário"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK - Telefone removido com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/UserPhones"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request - Erro de validação de dados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties" : {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized - Usuário não autorizado, ou erro de autenticação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties" : {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found - Usuário não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties" : {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error - Erro interno do servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties" : {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/addFavProduct/{id}": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Adiciona um produto favorito ao usuário",
+                "description": "Adiciona um produto favorito ao usuário, mediante ID informado",
+                "tags": [
+                    "Usuário"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "$ref": "#/components/schemas/FavoriteProducts"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK - Produto favorito adicionado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/FavoriteProducts"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request - Erro de validação de dados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties" : {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "Erro de validação de dados"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized - Usuário não autorizado, ou erro de autenticação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties" : {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "Usuário não autorizado, ou erro de autenticação"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found - Usuário não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties" : {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/removeFavProduct/{id}": {
+            "delete": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Remove um produto favorito do usuário",
+                "description": "Remove um produto favorito do usuário, mediante ID informado",
+                "tags": [
+                    "Usuário"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK - Produto favorito removido com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/FavoriteProducts"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request - Erro de validação de dados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties" : {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "Erro de validação de dados"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized - Usuário não autorizado, ou erro de autenticação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties" : {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "Usuário não autorizado, ou erro de autenticação"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found - Usuário não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties" : {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
 
@@ -570,6 +1211,73 @@
                     "admin": {
                         "type": "boolean",
                         "description": "Usuário administrador?"
+                    }
+                }
+            },
+            "UserAddress": {
+                "type": "object",
+                "properties": {
+                    "rua": {
+                        "type": "string",
+                        "description": "Rua do usuário"
+                    },
+                    "numero": {
+                        "type": "string",
+                        "description": "Número do usuário"
+                    },
+                    "complemento": {
+                        "type": "string",
+                        "description": "Complemento do endereço do usuário"
+                    },
+                    "bairro": {
+                        "type": "string",
+                        "description": "Bairro do usuário"
+                    },
+                    "cidade": {
+                        "type": "string",
+                        "description": "Cidade do usuário"
+                    },
+                    "estado": {
+                        "type": "string",
+                        "description": "Estado do usuário"
+                    },
+                    "cep": {
+                        "type": "string",
+                        "description": "CEP do usuário"
+                    },
+                    "dataCriação": {
+                        "type": "string",
+                        "description": "Data de inclusão do endereço"
+                    }
+                }
+            },
+            "UserPhones": {
+                "type": "object",
+                "properties": {
+                    "ddd": {
+                        "type": "string",
+                        "description": "DDD do telefone"
+                    },
+                    "numero": {
+                        "type": "string",
+                        "description": "Número do telefone"
+                    },
+                    "dataCriação": {
+                        "type": "string",
+                        "description": "Data de inclusão do telefone"
+                    }
+                }
+            },
+            "FavoriteProducts": {
+                "type": "object",
+                "properties": {
+                    "idProduto": {
+                        "type": "string",
+                        "description": "ID do produto favorito"
+                    },
+                    "dataCriação": {
+                        "type": "string",
+                        "description": "Data de inclusão do produto favorito"
                     }
                 }
             }
