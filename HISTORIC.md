@@ -19,3 +19,6 @@ Tudo o que foi realizado no modo desenvolvedor:
 - [x] Instalar o DotEnv
 - [x] Configuração de endpoints e validações
 - [x] Instalação do Swagger
+- [x] Configuração do Swagger
+- [x] Criação do arquivo de documentação do Swagger
+- [x] Instalação do Cors

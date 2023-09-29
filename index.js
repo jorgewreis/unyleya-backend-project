@@ -1,6 +1,10 @@
 // Definições de importação
 const express = require('express');
 require('dotenv').config();
+const cors = require('cors');
+
+const { connectToDatabase } = require('./src/database/database');
+
 const user = require('./src/router/user.router');
 const auth = require('./src/router/auth.router');
 const product = require('./src/router/product.router');
@@ -9,14 +13,17 @@ const carrinho = require('./src/router/carrinho.router');
 const pedido = require('./src/router/pedido.router');
 const docs = require('./src/router/docs.router');
 
-const { connectToDatabase } = require('./src/database/database');
-const Categoria = require('./src/model/categoria.model');
 const app = express();
-
-// Definições de rotas
 const port = 3000;
 
 app.use(express.json());
+app.use(cors(
+    {
+        origin: 'http://localhost:3001',
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+        optionsSuccessStatus: 200
+    }
+));
 
 // Conexão com o banco de dados
 connectToDatabase();
