@@ -1,6 +1,6 @@
 # unyleya-backend-project
 Projeto final da disciplina **Back-End Development** do curso de 
-== MBA EM DESENVOLVIMENTO FULL STACK == da Faculdade Unyleya
+==MBA EM DESENVOLVIMENTO FULL STACK== da Faculdade Unyleya
 
 ## Como foi feito o código:
 - Foram utilizadas as dependências do NodeJs: Express, Mongoose, Nodemon, Cors, Dotenv, Bcryptjs, Jsonwebtoken, Crypto e Swagger.
